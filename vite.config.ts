@@ -1,16 +1,29 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import mdx from 'fumadocs-mdx/vite'
+import { devtools } from '@tanstack/devtools-vite'
 
-export default defineConfig({
-  plugins: [react()],
-  build: {
-    outDir: 'dist',
-    emptyOutDir: true,
-  },
-  server: {
-    port: 5173,
-    proxy: {
-      '/api': 'http://localhost:8787',
-    },
-  },
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+
+import viteReact from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import { cloudflare } from '@cloudflare/vite-plugin'
+
+const config = defineConfig({
+  resolve: { tsconfigPaths: true },
+  plugins: [
+    mdx(),
+    devtools(),
+    cloudflare({ viteEnvironment: { name: 'ssr' } }),
+    tailwindcss(),
+    tanstackStart({
+      importProtection: {
+        // auth.client.ts is isomorphic (guards window access internally);
+        // allow server-side route files to import it.
+        server: { excludeFiles: ['**/features/auth/auth.client.*'] },
+      },
+    }),
+    viteReact(),
+  ],
 })
+
+export default config

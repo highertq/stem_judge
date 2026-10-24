@@ -1,0 +1,1 @@
+CREATE INDEX `notes_userId_idx` ON `notes` (`user_id`);

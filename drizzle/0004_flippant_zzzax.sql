@@ -1,0 +1,1 @@
+ALTER TABLE `subscription` ADD `lifetime` integer DEFAULT false NOT NULL;

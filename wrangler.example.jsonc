@@ -1,0 +1,177 @@
+/**
+ * Template Wrangler config — COMMITTED to git as the reference.
+ *
+ * On first setup, copy this to `wrangler.jsonc` (which is git-ignored) and fill
+ * in your own values:
+ *   cp wrangler.example.jsonc wrangler.jsonc
+ *
+ * Placeholders to replace in `wrangler.jsonc` after creating your resources:
+ *   - env.{staging,production}.d1_databases[].database_id  (wrangler d1 create ...)
+ *   - env.{staging,production}.kv_namespaces[].id          (wrangler kv namespace create CACHE --env ...)
+ *   - optionally add env.production.routes for a custom domain
+ * Keep this example file in sync when you add new bindings/vars.
+ *
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "flarestarter",
+	"compatibility_date": "2026-05-30",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	// Custom worker entry wraps the framework's server-entry to add env
+	// validation + security headers (see src/worker.ts).
+	"main": "./src/worker.ts",
+	"observability": {
+		"enabled": true
+	},
+	"upload_source_maps": true,
+	// Cron Triggers：每日 03:00 UTC 跑维护清理（过期 session/verification + 陈旧限流行）。
+	// scheduled handler 见 src/worker.ts；清理逻辑见 src/features/maintenance/cleanup.ts。
+	// 这是 CF 定时任务的参考实现——按需添加你自己的周期任务（如发送摘要邮件）。
+	"triggers": {
+		"crons": [
+			"0 3 * * *"
+		]
+	},
+	/**
+	 * Smart Placement
+	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+	 */
+	// "placement": {  "mode": "smart" }
+	/**
+	 * Bindings
+	 * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
+	 * databases, object storage, AI inference, real-time communication and more.
+	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/
+	 */
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "flarestarter-db",
+			"database_id": "00000000-0000-0000-0000-000000000000",
+			"migrations_dir": "drizzle"
+		}
+	],
+	// 对象存储（头像/文件上传）。本地 dev/test 由 miniflare 自动模拟，零配置即用。
+	// 部署前先建桶：`wrangler r2 bucket create flarestarter-files`（见 docs/storage.md）。
+	"r2_buckets": [
+		{
+			"binding": "BUCKET",
+			"bucket_name": "flarestarter-files"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "CACHE",
+			"id": "00000000000000000000000000000000"
+		}
+	],
+	/**
+	 * Environment Variables
+	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
+	 * Note: Use secrets to store sensitive data.
+	 * https://developers.cloudflare.com/workers/configuration/secrets/
+	 */
+	// Declaring var keys here gives `wrangler types` enough info to type env.BETTER_AUTH_SECRET etc.
+	// Real values are supplied via .dev.vars (local) or `wrangler secret put` (production).
+	// Empty strings are fine — they are never deployed; secrets override them.
+	"vars": {
+		"BETTER_AUTH_SECRET": "",
+		"BETTER_AUTH_URL": "",
+		"RESEND_API_KEY": "",
+		"EMAIL_FROM": "",
+		"GOOGLE_CLIENT_ID": "",
+		"GOOGLE_CLIENT_SECRET": "",
+		"GITHUB_CLIENT_ID": "",
+		"GITHUB_CLIENT_SECRET": "",
+		"STRIPE_SECRET_KEY": "",
+		"STRIPE_WEBHOOK_SECRET": "",
+		"STRIPE_PRICE_PRO_MONTHLY": "",
+		"STRIPE_PRICE_PRO_YEARLY": "",
+		"STRIPE_PRICE_PRO_LIFETIME": "",
+		"ADMIN_EMAILS": "",
+		"TURNSTILE_SITE_KEY": "",
+		"TURNSTILE_SECRET_KEY": "",
+		"CF_ANALYTICS_TOKEN": "",
+		"SENTRY_DSN": "",
+		"RESEND_AUDIENCE_ID": ""
+	},
+	/**
+	 * Static Assets
+	 * https://developers.cloudflare.com/workers/static-assets/binding/
+	 */
+	// "assets": {  "directory": "./public/",  "binding": "ASSETS" }
+	/**
+	 * Service Bindings (communicate between multiple Workers)
+	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
+	 */
+	// "services": [  {   "binding": "MY_SERVICE",   "service": "my-service"  } ]
+	/**
+	 * Named Environments (staging / production)
+	 * Note: Named environments do NOT inherit top-level bindings in wrangler,
+	 * so each env repeats its own binding declarations.
+	 */
+	"env": {
+		"staging": {
+			"name": "flarestarter-staging",
+			"triggers": {
+				"crons": [
+					"0 3 * * *"
+				]
+			},
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "flarestarter-db-staging",
+					"database_id": "00000000-0000-0000-0000-000000000000",
+					"migrations_dir": "drizzle"
+				}
+			],
+			// 部署前先建桶：`wrangler r2 bucket create flarestarter-files-staging`。
+			"r2_buckets": [
+				{
+					"binding": "BUCKET",
+					"bucket_name": "flarestarter-files-staging"
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "CACHE",
+					"id": "00000000000000000000000000000000"
+				}
+			]
+		},
+		"production": {
+			"name": "flarestarter-production",
+			"triggers": {
+				"crons": [
+					"0 3 * * *"
+				]
+			},
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "flarestarter-db-prod",
+					"database_id": "00000000-0000-0000-0000-000000000000",
+					"migrations_dir": "drizzle"
+				}
+			],
+			// 部署前先建桶：`wrangler r2 bucket create flarestarter-files-prod`。
+			"r2_buckets": [
+				{
+					"binding": "BUCKET",
+					"bucket_name": "flarestarter-files-prod"
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "CACHE",
+					"id": "00000000000000000000000000000000"
+				}
+			]
+		}
+	}
+}

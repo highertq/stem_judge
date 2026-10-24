@@ -1,0 +1,1 @@
+ALTER TABLE `sponsorship` ADD `github` text;

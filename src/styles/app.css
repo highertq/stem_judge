@@ -1,0 +1,672 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ── Self-hosted fonts (latin subset, /public/fonts) ─────────────────────────
+   Served same-origin instead of fonts.googleapis.com: no render-blocking
+   third-party request, and reachable for visitors in mainland China.
+   CJK text falls back to system fonts (see font stacks below). */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/space-grotesk-latin-400-normal.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(/fonts/space-grotesk-latin-500-normal.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(/fonts/space-grotesk-latin-600-normal.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(/fonts/space-grotesk-latin-700-normal.woff2) format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(/fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(/fonts/jetbrains-mono-latin-600-normal.woff2) format("woff2");
+}
+
+/* ── Dark-mode variant: triggered by .dark class on any ancestor ─────────── */
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   FlareStarter — "Edge Terminal" design language
+   Ember accent #E2531C · cool-graphite neutrals · dark-first.
+   Display: Space Grotesk · mono: JetBrains Mono · CJK: system fonts.
+   ========================================================================== */
+
+/* ── LIGHT (default token set) ───────────────────────────────────────────── */
+:root {
+  --background: #ffffff;
+  --bg-alt: #f7f8fa;
+  --bg-inset: #f2f3f7;
+  --card: #ffffff;
+  --card-2: #f7f8fa;
+  --foreground: #0f1117;
+  --fg-2: #4a5160;
+  --fg-3: #8a92a3;
+  --border: #e6e8ee;
+  --border-2: #eff1f5;
+  --border-strong: #c7ccd6;
+  --primary: #e2531c;
+  --primary-hover: #c2410c;
+  --primary-foreground: #ffffff;
+  --soft: #fce9e0;
+  --muted: #f7f8fa;
+  --muted-foreground: #8a92a3;
+  --success: #15a05a;
+  --destructive: #e5484d;
+  --ring: rgba(226, 83, 28, 0.4);
+  /* Flat surfaces: no elevation shadows — depth is conveyed by background steps + 1px borders. */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --dot: rgba(74, 81, 96, 0.16);
+}
+
+/* ── shadcn standard tokens (mapped to brand values; var() re-resolves per theme) ── */
+:root {
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--bg-alt);
+  --secondary-foreground: var(--fg-2);
+  --accent: var(--bg-alt);
+  --accent-foreground: var(--foreground);
+  --input: var(--border-strong);
+  --radius: 0.625rem;
+}
+
+/* ── DARK (graphite, cool) — default theme for new visitors ──────────────── */
+:root.dark,
+.dark {
+  --background: #0b0d12;
+  --bg-alt: #11141b;
+  --bg-inset: #14171f;
+  --card: #14171f;
+  --card-2: #191d26;
+  --foreground: #f3f5f9;
+  --fg-2: #b4bbc9;
+  --fg-3: #7c8499;
+  --border: #232733;
+  --border-2: #1a1e27;
+  --border-strong: #353b4a;
+  --primary: #f2661e;
+  --primary-hover: #fb7a33;
+  --primary-foreground: #ffffff;
+  --soft: rgba(242, 102, 30, 0.16);
+  --muted: #11141b;
+  --muted-foreground: #7c8499;
+  --success: #34d399;
+  --destructive: #ff6166;
+  --ring: rgba(242, 102, 30, 0.5);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --dot: rgba(180, 187, 201, 0.1);
+}
+
+/* ── Tailwind token bridge (shadcn-compatible utilities) ──────────────────── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-bg-alt: var(--bg-alt);
+  --color-inset: var(--bg-inset);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-border: var(--border);
+  --color-border-2: var(--border-2);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-soft: var(--soft);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-success: var(--success);
+  --color-destructive: var(--destructive);
+  --color-ring: var(--ring);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-input: var(--input);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei UI",
+    "Microsoft YaHei", "Segoe UI", "HarmonyOS Sans SC", "Noto Sans CJK SC", Roboto, Arial, sans-serif;
+  --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Microsoft YaHei UI", "Segoe UI", "HarmonyOS Sans SC", "Noto Sans CJK SC", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+/* ==========================================================================
+   base
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* In @layer base so Tailwind text-color utilities (e.g. text-primary-foreground
+   on <a>/<Link> buttons) win — unlayered rules would override them in v4. */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  /* Tailwind v4 defaults colorless border utilities to currentColor, which
+     renders near-white dividers on the dark theme (e.g. table rows). Restore
+     the themed default; explicit border-* colors still win. */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border);
+  }
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  border: 1px solid var(--border);
+  background: var(--bg-inset);
+  border-radius: 5px;
+  padding: 1px 6px;
+}
+
+pre code {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+button,
+a,
+.card,
+input {
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease,
+    box-shadow 180ms ease, transform 120ms ease;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* dotted-grid section background */
+.grid-bg {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* mono kicker label */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--primary);
+  letter-spacing: 0.02em;
+}
+
+/* mono metric pill */
+.metric {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--soft);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+/* ==========================================================================
+   terminal card (landing hero + pricing cards)
+   ========================================================================== */
+.term {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-alt);
+}
+.term-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+}
+.term-body {
+  padding: 16px;
+  line-height: 1.7;
+  color: var(--fg-2);
+  /* terminals don't wrap — long commands scroll inside the card on narrow screens */
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.term-body .pr {
+  color: var(--primary);
+}
+.term-body .cm {
+  color: var(--fg-3);
+}
+.term-body .ok {
+  color: var(--success);
+}
+.term-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--primary);
+  vertical-align: -2px;
+  animation: term-blink 1.1s steps(1) infinite;
+}
+@keyframes term-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* feature rows */
+.feat-row {
+  display: flex;
+  gap: 16px;
+  padding: 22px 0;
+  border-top: 1px solid var(--border);
+}
+.icon-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--soft);
+  color: var(--primary);
+  flex: 0 0 auto;
+}
+
+/* ==========================================================================
+   app / admin shell
+   ========================================================================== */
+/* (layout lives on the AppShell component via utilities; only the skins live here) */
+.app-side {
+  border-right: 1px solid var(--border);
+  background: var(--bg-alt);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.app-side .brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 8px 16px;
+}
+.app-side .grp {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  padding: 14px 10px 6px;
+}
+.app-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg-2);
+  cursor: pointer;
+}
+.app-nav-item:hover {
+  background: var(--bg-inset);
+  color: var(--foreground);
+}
+.app-nav-item.active {
+  background: var(--soft);
+  color: var(--primary);
+  font-weight: 600;
+}
+.app-topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: nowrap;
+  min-width: 0;
+  height: 60px;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--background) 86%, transparent);
+}
+.app-topbar.compact {
+  gap: 8px;
+  padding: 0 14px;
+}
+.app-crumb {
+  font-size: 14px;
+  color: var(--fg-3);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.app-crumb b {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.app-main {
+  /* tighter gutters on phones — content width beats whitespace in the app/admin views */
+  padding: 20px 16px;
+}
+@media (min-width: 768px) {
+  .app-main {
+    padding: 28px 32px;
+  }
+}
+.page-h {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   form controls (auth / account)
+   ========================================================================== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.req {
+  color: var(--destructive);
+}
+.field-wrap {
+  position: relative;
+}
+.field-wrap .lead {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--fg-3);
+  pointer-events: none;
+  display: inline-flex;
+}
+.field-wrap .trail {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--fg-3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 5px;
+  display: inline-flex;
+}
+.field-wrap .trail:hover {
+  color: var(--foreground);
+  background: var(--bg-alt);
+}
+.field-hint {
+  font-size: 12.5px;
+  color: var(--fg-3);
+}
+.field-hint.err {
+  color: var(--destructive);
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  height: 44px;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--foreground);
+  background: var(--background);
+  border: 1px solid var(--border-strong);
+  border-radius: 7px;
+  cursor: pointer;
+}
+.social-btn:hover {
+  background: var(--bg-alt);
+  border-color: var(--fg-3);
+}
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--fg-3);
+  font-size: 12.5px;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ==========================================================================
+   auth shell
+   ========================================================================== */
+.auth-wrap {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.auth-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  padding: 32px;
+}
+/* logo IS the home link; a back-chevron slides in on hover/focus */
+.auth-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 8px;
+  padding: 4px 8px 4px 6px;
+  margin-left: -6px;
+  outline: none;
+}
+.auth-home:hover {
+  background: var(--bg-alt);
+}
+.auth-home:focus-visible {
+  box-shadow: 0 0 0 3px var(--ring);
+}
+.auth-back {
+  display: inline-flex;
+  align-items: center;
+  color: var(--fg-3);
+  overflow: hidden;
+  width: 0;
+  opacity: 0;
+  transform: translateX(4px);
+  transition: width 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+.auth-home:hover .auth-back,
+.auth-home:focus-visible .auth-back {
+  width: 16px;
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================================================
+   impersonation banner
+   ========================================================================== */
+.impersonation-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 20px;
+  background: var(--destructive);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   pricing comparison table
+   ========================================================================== */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.compare-table th,
+.compare-table td {
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+.compare-table thead th {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg-2);
+}
+.compare-table thead th.c {
+  text-align: center;
+}
+.compare-table thead th.pro {
+  color: var(--primary);
+}
+.compare-table td.c {
+  text-align: center;
+  width: 116px;
+}
+.compare-table td.feat {
+  font-size: 14px;
+  color: var(--foreground);
+}
+.compare-table .grp td {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--fg-3);
+  background: var(--bg-alt);
+  padding: 9px 18px;
+}
+.compare-table th.pro,
+.compare-table td.pro {
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+}
+
+/* animated price swap */
+@keyframes price-pop {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.price-pop {
+  display: inline-block;
+  animation: price-pop 0.26s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-back,
+  .price-pop,
+  .term-cursor {
+    transition: none;
+    animation: none;
+  }
+}
+

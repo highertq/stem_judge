@@ -1,0 +1,1 @@
+ALTER TABLE `subscription` ADD `payment_failed_at` integer;
