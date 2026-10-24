@@ -20,6 +20,7 @@ import { Route as Char123LocaleChar125TermsRouteImport } from './routes/{-$local
 import { Route as Char123LocaleChar125PrivacyRouteImport } from './routes/{-$locale}/privacy'
 import { Route as Char123LocaleChar125PricingRouteImport } from './routes/{-$locale}/pricing'
 import { Route as Char123LocaleChar125ChangelogRouteImport } from './routes/{-$locale}/changelog'
+import { Route as SubmitTokenRouteImport } from './routes/submit/$token'
 import { Route as DocsSplatRouteImport } from './routes/docs/$'
 import { Route as DocsMdSplatRouteImport } from './routes/docs-md/$'
 import { Route as ApiSearchRouteImport } from './routes/api/search'
@@ -43,6 +44,7 @@ import { Route as ApiAvatarsSplatRouteImport } from './routes/api/avatars/$'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as Char123LocaleChar125AppClassesIndexRouteImport } from './routes/{-$locale}/app/classes/index'
 import { Route as Char123LocaleChar125AppClassesClassIdRouteImport } from './routes/{-$locale}/app/classes/$classId'
+import { Route as Char123LocaleChar125AppAssignmentsAssignmentIdRouteImport } from './routes/{-$locale}/app/assignments/$assignmentId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -106,6 +108,11 @@ const Char123LocaleChar125ChangelogRoute =
     path: '/changelog',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
+const SubmitTokenRoute = SubmitTokenRouteImport.update({
+  id: '/submit/$token',
+  path: '/submit/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DocsSplatRoute = DocsSplatRouteImport.update({
   id: '/docs/$',
   path: '/docs/$',
@@ -237,6 +244,12 @@ const Char123LocaleChar125AppClassesClassIdRoute =
     path: '/app/classes/$classId',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
+const Char123LocaleChar125AppAssignmentsAssignmentIdRoute =
+  Char123LocaleChar125AppAssignmentsAssignmentIdRouteImport.update({
+    id: '/app/assignments/$assignmentId',
+    path: '/app/assignments/$assignmentId',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
@@ -249,6 +262,7 @@ export interface FileRoutesByFullPath {
   '/api/search': typeof ApiSearchRoute
   '/docs-md/$': typeof DocsMdSplatRoute
   '/docs/$': typeof DocsSplatRoute
+  '/submit/$token': typeof SubmitTokenRoute
   '/{-$locale}/changelog': typeof Char123LocaleChar125ChangelogRoute
   '/{-$locale}/pricing': typeof Char123LocaleChar125PricingRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
@@ -271,6 +285,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/app/pro': typeof Char123LocaleChar125AppProRoute
   '/{-$locale}/admin/': typeof Char123LocaleChar125AdminIndexRoute
   '/{-$locale}/app/': typeof Char123LocaleChar125AppIndexRoute
+  '/{-$locale}/app/assignments/$assignmentId': typeof Char123LocaleChar125AppAssignmentsAssignmentIdRoute
   '/{-$locale}/app/classes/$classId': typeof Char123LocaleChar125AppClassesClassIdRoute
   '/{-$locale}/app/classes/': typeof Char123LocaleChar125AppClassesIndexRoute
 }
@@ -283,6 +298,7 @@ export interface FileRoutesByTo {
   '/api/search': typeof ApiSearchRoute
   '/docs-md/$': typeof DocsMdSplatRoute
   '/docs/$': typeof DocsSplatRoute
+  '/submit/$token': typeof SubmitTokenRoute
   '/{-$locale}/changelog': typeof Char123LocaleChar125ChangelogRoute
   '/{-$locale}/pricing': typeof Char123LocaleChar125PricingRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
@@ -305,6 +321,7 @@ export interface FileRoutesByTo {
   '/{-$locale}/app/pro': typeof Char123LocaleChar125AppProRoute
   '/{-$locale}/admin': typeof Char123LocaleChar125AdminIndexRoute
   '/{-$locale}/app': typeof Char123LocaleChar125AppIndexRoute
+  '/{-$locale}/app/assignments/$assignmentId': typeof Char123LocaleChar125AppAssignmentsAssignmentIdRoute
   '/{-$locale}/app/classes/$classId': typeof Char123LocaleChar125AppClassesClassIdRoute
   '/{-$locale}/app/classes': typeof Char123LocaleChar125AppClassesIndexRoute
 }
@@ -320,6 +337,7 @@ export interface FileRoutesById {
   '/api/search': typeof ApiSearchRoute
   '/docs-md/$': typeof DocsMdSplatRoute
   '/docs/$': typeof DocsSplatRoute
+  '/submit/$token': typeof SubmitTokenRoute
   '/{-$locale}/changelog': typeof Char123LocaleChar125ChangelogRoute
   '/{-$locale}/pricing': typeof Char123LocaleChar125PricingRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
@@ -342,6 +360,7 @@ export interface FileRoutesById {
   '/{-$locale}/app/pro': typeof Char123LocaleChar125AppProRoute
   '/{-$locale}/admin/': typeof Char123LocaleChar125AdminIndexRoute
   '/{-$locale}/app/': typeof Char123LocaleChar125AppIndexRoute
+  '/{-$locale}/app/assignments/$assignmentId': typeof Char123LocaleChar125AppAssignmentsAssignmentIdRoute
   '/{-$locale}/app/classes/$classId': typeof Char123LocaleChar125AppClassesClassIdRoute
   '/{-$locale}/app/classes/': typeof Char123LocaleChar125AppClassesIndexRoute
 }
@@ -358,6 +377,7 @@ export interface FileRouteTypes {
     | '/api/search'
     | '/docs-md/$'
     | '/docs/$'
+    | '/submit/$token'
     | '/{-$locale}/changelog'
     | '/{-$locale}/pricing'
     | '/{-$locale}/privacy'
@@ -380,6 +400,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/app/pro'
     | '/{-$locale}/admin/'
     | '/{-$locale}/app/'
+    | '/{-$locale}/app/assignments/$assignmentId'
     | '/{-$locale}/app/classes/$classId'
     | '/{-$locale}/app/classes/'
   fileRoutesByTo: FileRoutesByTo
@@ -392,6 +413,7 @@ export interface FileRouteTypes {
     | '/api/search'
     | '/docs-md/$'
     | '/docs/$'
+    | '/submit/$token'
     | '/{-$locale}/changelog'
     | '/{-$locale}/pricing'
     | '/{-$locale}/privacy'
@@ -414,6 +436,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/app/pro'
     | '/{-$locale}/admin'
     | '/{-$locale}/app'
+    | '/{-$locale}/app/assignments/$assignmentId'
     | '/{-$locale}/app/classes/$classId'
     | '/{-$locale}/app/classes'
   id:
@@ -428,6 +451,7 @@ export interface FileRouteTypes {
     | '/api/search'
     | '/docs-md/$'
     | '/docs/$'
+    | '/submit/$token'
     | '/{-$locale}/changelog'
     | '/{-$locale}/pricing'
     | '/{-$locale}/privacy'
@@ -450,6 +474,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/app/pro'
     | '/{-$locale}/admin/'
     | '/{-$locale}/app/'
+    | '/{-$locale}/app/assignments/$assignmentId'
     | '/{-$locale}/app/classes/$classId'
     | '/{-$locale}/app/classes/'
   fileRoutesById: FileRoutesById
@@ -464,6 +489,7 @@ export interface RootRouteChildren {
   ApiSearchRoute: typeof ApiSearchRoute
   DocsMdSplatRoute: typeof DocsMdSplatRoute
   DocsSplatRoute: typeof DocsSplatRoute
+  SubmitTokenRoute: typeof SubmitTokenRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiAvatarsSplatRoute: typeof ApiAvatarsSplatRoute
   ApiWebhooksStripeRoute: typeof ApiWebhooksStripeRoute
@@ -547,6 +573,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/{-$locale}/changelog'
       preLoaderRoute: typeof Char123LocaleChar125ChangelogRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/submit/$token': {
+      id: '/submit/$token'
+      path: '/submit/$token'
+      fullPath: '/submit/$token'
+      preLoaderRoute: typeof SubmitTokenRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/docs/$': {
       id: '/docs/$'
@@ -709,6 +742,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125AppClassesClassIdRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
+    '/{-$locale}/app/assignments/$assignmentId': {
+      id: '/{-$locale}/app/assignments/$assignmentId'
+      path: '/app/assignments/$assignmentId'
+      fullPath: '/{-$locale}/app/assignments/$assignmentId'
+      preLoaderRoute: typeof Char123LocaleChar125AppAssignmentsAssignmentIdRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
   }
 }
 
@@ -751,6 +791,7 @@ interface Char123LocaleChar125RouteRouteChildren {
   Char123LocaleChar125AppFeedbackRoute: typeof Char123LocaleChar125AppFeedbackRoute
   Char123LocaleChar125AppProRoute: typeof Char123LocaleChar125AppProRoute
   Char123LocaleChar125AppIndexRoute: typeof Char123LocaleChar125AppIndexRoute
+  Char123LocaleChar125AppAssignmentsAssignmentIdRoute: typeof Char123LocaleChar125AppAssignmentsAssignmentIdRoute
   Char123LocaleChar125AppClassesClassIdRoute: typeof Char123LocaleChar125AppClassesClassIdRoute
   Char123LocaleChar125AppClassesIndexRoute: typeof Char123LocaleChar125AppClassesIndexRoute
 }
@@ -778,6 +819,8 @@ const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChil
     Char123LocaleChar125AppFeedbackRoute: Char123LocaleChar125AppFeedbackRoute,
     Char123LocaleChar125AppProRoute: Char123LocaleChar125AppProRoute,
     Char123LocaleChar125AppIndexRoute: Char123LocaleChar125AppIndexRoute,
+    Char123LocaleChar125AppAssignmentsAssignmentIdRoute:
+      Char123LocaleChar125AppAssignmentsAssignmentIdRoute,
     Char123LocaleChar125AppClassesClassIdRoute:
       Char123LocaleChar125AppClassesClassIdRoute,
     Char123LocaleChar125AppClassesIndexRoute:
@@ -799,6 +842,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiSearchRoute: ApiSearchRoute,
   DocsMdSplatRoute: DocsMdSplatRoute,
   DocsSplatRoute: DocsSplatRoute,
+  SubmitTokenRoute: SubmitTokenRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiAvatarsSplatRoute: ApiAvatarsSplatRoute,
   ApiWebhooksStripeRoute: ApiWebhooksStripeRoute,

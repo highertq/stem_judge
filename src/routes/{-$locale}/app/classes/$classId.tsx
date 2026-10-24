@@ -198,24 +198,30 @@ function ClassDetailPage() {
           ) : (
             <ul className="m-0 list-none divide-y divide-border p-0">
               {assignments.map((a) => (
-                <li key={a.id} className="py-3">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0">
-                      <p className="m-0 truncate text-[13.5px] font-medium">{a.title}</p>
-                      {a.instructions && (
-                        <p className="m-0 mt-1 line-clamp-2 text-[12.5px] leading-relaxed text-fg-3">
-                          {a.instructions}
-                        </p>
-                      )}
+                <li key={a.id} className="py-0">
+                  <Link
+                    to="/{-$locale}/app/assignments/$assignmentId"
+                    params={{ assignmentId: a.id }}
+                    className="block py-3 transition-colors hover:bg-bg-alt/50"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="m-0 truncate text-[13.5px] font-medium">{a.title}</p>
+                        {a.instructions && (
+                          <p className="m-0 mt-1 line-clamp-2 text-[12.5px] leading-relaxed text-fg-3">
+                            {a.instructions}
+                          </p>
+                        )}
+                      </div>
+                      <span className="shrink-0 rounded-full bg-bg-alt px-2 py-0.5 text-[11px] text-fg-2">
+                        {a.status}
+                      </span>
                     </div>
-                    <span className="shrink-0 rounded-full bg-bg-alt px-2 py-0.5 text-[11px] text-fg-2">
-                      {a.status}
-                    </span>
-                  </div>
-                  <div className="mt-2 flex items-center gap-3 text-[12px] text-fg-3">
-                    <ClipboardList size={13} />
-                    <span>No submissions yet</span>
-                  </div>
+                    <div className="mt-2 flex items-center gap-3 text-[12px] text-fg-3">
+                      <ClipboardList size={13} />
+                      <span>Open submission links</span>
+                    </div>
+                  </Link>
                 </li>
               ))}
             </ul>

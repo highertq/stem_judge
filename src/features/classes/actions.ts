@@ -92,3 +92,40 @@ export const createAssignmentFn = createServerFn({ method: 'POST' })
       Date.now(),
     )
   })
+
+/** 老师侧：打开作业详情时补齐每个学生的一次性提交 token，并返回名册状态。 */
+export const getAssignmentInvitesFn = createServerFn({ method: 'GET' })
+  .validator((d: { assignmentId: string }) => d)
+  .handler(async ({ data }) => {
+    const { createDb } = await import('@/db/client')
+    const { env } = await import('@/lib/env')
+    const { scopeFromUser } = await import('@/db/scope')
+    const { ensureInvites, listInvites, getAssignmentForTeacher } = await import('./submissions.server')
+    const user = await currentUser()
+    const db = createDb(env.DB)
+    const scope = scopeFromUser(user.id)
+    const assignment = await getAssignmentForTeacher(db, scope, data.assignmentId)
+    if (!assignment) return { assignment: null, invites: [] }
+    await ensureInvites(db, assignment.id, Date.now())
+    return { assignment, invites: await listInvites(db, assignment.id) }
+  })
+
+/** 公开：学生凭 token 读取自己的提交页，不需要登录。 */
+export const getPublicSubmissionFn = createServerFn({ method: 'GET' })
+  .validator((d: { token: string }) => d)
+  .handler(async ({ data }) => {
+    const { createDb } = await import('@/db/client')
+    const { env } = await import('@/lib/env')
+    const { getSubmissionByToken } = await import('./submissions.server')
+    return getSubmissionByToken(createDb(env.DB), data.token)
+  })
+
+/** 公开：学生贴作品外链。 */
+export const submitArtifactFn = createServerFn({ method: 'POST' })
+  .validator((d: { token: string; kind: string; url: string }) => d)
+  .handler(async ({ data }) => {
+    const { createDb } = await import('@/db/client')
+    const { env } = await import('@/lib/env')
+    const { addExternalArtifact } = await import('./submissions.server')
+    return addExternalArtifact(createDb(env.DB), data.token, { kind: data.kind, url: data.url }, Date.now())
+  })
