@@ -77,10 +77,9 @@ export function AppShell({
           <Home size={18} className="shrink-0" />
           {label(t('app.dashboard'))}
         </Link>
-        <Link to="/{-$locale}/app/pro" activeProps={{}} className={item(active === 'pro')} title={t('app.proDemo')}>
-          <Sparkles size={18} className="shrink-0" />
-          {label(t('app.proDemo'))}
-          {!rail && <Badge variant="pro" className="ml-auto">Pro</Badge>}
+        <Link to="/{-$locale}/app/classes" activeProps={{}} className={item(active === 'classes')} title={t('app.classes')}>
+          <Users size={18} className="shrink-0" />
+          {label(t('app.classes'))}
         </Link>
         <Link to="/{-$locale}/app/feedback" activeProps={{}} className={item(active === 'feedback')} title={t('feedback.nav')}>
           <MessageSquare size={18} className="shrink-0" />

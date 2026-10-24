@@ -43,6 +43,7 @@ export const en = {
   },
   app: {
     dashboard: 'Dashboard',
+    classes: 'Classes',
     account: 'Account',
     loggedInAs: 'Logged in as {email}',
     passwordChanged: 'Password changed successfully.',

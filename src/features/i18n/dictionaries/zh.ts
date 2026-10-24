@@ -30,6 +30,7 @@ export const zh: Dict = {
   },
   app: {
     dashboard: '仪表盘',
+    classes: '班级',
     account: '账号',
     loggedInAs: '当前登录：{email}',
     passwordChanged: '密码已成功修改。',

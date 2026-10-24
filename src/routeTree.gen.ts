@@ -41,6 +41,8 @@ import { Route as Char123LocaleChar125authForgotPasswordRouteImport } from './ro
 import { Route as ApiWebhooksStripeRouteImport } from './routes/api/webhooks/stripe'
 import { Route as ApiAvatarsSplatRouteImport } from './routes/api/avatars/$'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as Char123LocaleChar125AppClassesIndexRouteImport } from './routes/{-$locale}/app/classes/index'
+import { Route as Char123LocaleChar125AppClassesClassIdRouteImport } from './routes/{-$locale}/app/classes/$classId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -223,6 +225,18 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char123LocaleChar125AppClassesIndexRoute =
+  Char123LocaleChar125AppClassesIndexRouteImport.update({
+    id: '/app/classes/',
+    path: '/app/classes/',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125AppClassesClassIdRoute =
+  Char123LocaleChar125AppClassesClassIdRouteImport.update({
+    id: '/app/classes/$classId',
+    path: '/app/classes/$classId',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
@@ -257,6 +271,8 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/app/pro': typeof Char123LocaleChar125AppProRoute
   '/{-$locale}/admin/': typeof Char123LocaleChar125AdminIndexRoute
   '/{-$locale}/app/': typeof Char123LocaleChar125AppIndexRoute
+  '/{-$locale}/app/classes/$classId': typeof Char123LocaleChar125AppClassesClassIdRoute
+  '/{-$locale}/app/classes/': typeof Char123LocaleChar125AppClassesIndexRoute
 }
 export interface FileRoutesByTo {
   '/llms-full.txt': typeof LlmsFullDottxtRoute
@@ -289,6 +305,8 @@ export interface FileRoutesByTo {
   '/{-$locale}/app/pro': typeof Char123LocaleChar125AppProRoute
   '/{-$locale}/admin': typeof Char123LocaleChar125AdminIndexRoute
   '/{-$locale}/app': typeof Char123LocaleChar125AppIndexRoute
+  '/{-$locale}/app/classes/$classId': typeof Char123LocaleChar125AppClassesClassIdRoute
+  '/{-$locale}/app/classes': typeof Char123LocaleChar125AppClassesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -324,6 +342,8 @@ export interface FileRoutesById {
   '/{-$locale}/app/pro': typeof Char123LocaleChar125AppProRoute
   '/{-$locale}/admin/': typeof Char123LocaleChar125AdminIndexRoute
   '/{-$locale}/app/': typeof Char123LocaleChar125AppIndexRoute
+  '/{-$locale}/app/classes/$classId': typeof Char123LocaleChar125AppClassesClassIdRoute
+  '/{-$locale}/app/classes/': typeof Char123LocaleChar125AppClassesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -360,6 +380,8 @@ export interface FileRouteTypes {
     | '/{-$locale}/app/pro'
     | '/{-$locale}/admin/'
     | '/{-$locale}/app/'
+    | '/{-$locale}/app/classes/$classId'
+    | '/{-$locale}/app/classes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/llms-full.txt'
@@ -392,6 +414,8 @@ export interface FileRouteTypes {
     | '/{-$locale}/app/pro'
     | '/{-$locale}/admin'
     | '/{-$locale}/app'
+    | '/{-$locale}/app/classes/$classId'
+    | '/{-$locale}/app/classes'
   id:
     | '__root__'
     | '/{-$locale}'
@@ -426,6 +450,8 @@ export interface FileRouteTypes {
     | '/{-$locale}/app/pro'
     | '/{-$locale}/admin/'
     | '/{-$locale}/app/'
+    | '/{-$locale}/app/classes/$classId'
+    | '/{-$locale}/app/classes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -669,6 +695,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/{-$locale}/app/classes/': {
+      id: '/{-$locale}/app/classes/'
+      path: '/app/classes'
+      fullPath: '/{-$locale}/app/classes/'
+      preLoaderRoute: typeof Char123LocaleChar125AppClassesIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/app/classes/$classId': {
+      id: '/{-$locale}/app/classes/$classId'
+      path: '/app/classes/$classId'
+      fullPath: '/{-$locale}/app/classes/$classId'
+      preLoaderRoute: typeof Char123LocaleChar125AppClassesClassIdRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
   }
 }
 
@@ -711,6 +751,8 @@ interface Char123LocaleChar125RouteRouteChildren {
   Char123LocaleChar125AppFeedbackRoute: typeof Char123LocaleChar125AppFeedbackRoute
   Char123LocaleChar125AppProRoute: typeof Char123LocaleChar125AppProRoute
   Char123LocaleChar125AppIndexRoute: typeof Char123LocaleChar125AppIndexRoute
+  Char123LocaleChar125AppClassesClassIdRoute: typeof Char123LocaleChar125AppClassesClassIdRoute
+  Char123LocaleChar125AppClassesIndexRoute: typeof Char123LocaleChar125AppClassesIndexRoute
 }
 
 const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
@@ -736,6 +778,10 @@ const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChil
     Char123LocaleChar125AppFeedbackRoute: Char123LocaleChar125AppFeedbackRoute,
     Char123LocaleChar125AppProRoute: Char123LocaleChar125AppProRoute,
     Char123LocaleChar125AppIndexRoute: Char123LocaleChar125AppIndexRoute,
+    Char123LocaleChar125AppClassesClassIdRoute:
+      Char123LocaleChar125AppClassesClassIdRoute,
+    Char123LocaleChar125AppClassesIndexRoute:
+      Char123LocaleChar125AppClassesIndexRoute,
   }
 
 const Char123LocaleChar125RouteRouteWithChildren =
