@@ -17,7 +17,6 @@ import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$local
 import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
 import { Route as Char123LocaleChar125WaitlistRouteImport } from './routes/{-$locale}/waitlist'
 import { Route as Char123LocaleChar125TermsRouteImport } from './routes/{-$locale}/terms'
-import { Route as Char123LocaleChar125SponsorRouteImport } from './routes/{-$locale}/sponsor'
 import { Route as Char123LocaleChar125PrivacyRouteImport } from './routes/{-$locale}/privacy'
 import { Route as Char123LocaleChar125PricingRouteImport } from './routes/{-$locale}/pricing'
 import { Route as Char123LocaleChar125ChangelogRouteImport } from './routes/{-$locale}/changelog'
@@ -25,7 +24,6 @@ import { Route as DocsSplatRouteImport } from './routes/docs/$'
 import { Route as DocsMdSplatRouteImport } from './routes/docs-md/$'
 import { Route as ApiSearchRouteImport } from './routes/api/search'
 import { Route as AdminWaitlistDotcsvRouteImport } from './routes/admin/waitlist[.]csv'
-import { Route as AdminSponsorsDotcsvRouteImport } from './routes/admin/sponsors[.]csv'
 import { Route as Char123LocaleChar125AdminRouteRouteImport } from './routes/{-$locale}/admin/route'
 import { Route as Char123LocaleChar125AppIndexRouteImport } from './routes/{-$locale}/app/index'
 import { Route as Char123LocaleChar125AdminIndexRouteImport } from './routes/{-$locale}/admin/index'
@@ -34,7 +32,6 @@ import { Route as Char123LocaleChar125AppFeedbackRouteImport } from './routes/{-
 import { Route as Char123LocaleChar125AppAccountRouteImport } from './routes/{-$locale}/app/account'
 import { Route as Char123LocaleChar125AdminWaitlistRouteImport } from './routes/{-$locale}/admin/waitlist'
 import { Route as Char123LocaleChar125AdminUsersRouteImport } from './routes/{-$locale}/admin/users'
-import { Route as Char123LocaleChar125AdminSponsorsRouteImport } from './routes/{-$locale}/admin/sponsors'
 import { Route as Char123LocaleChar125AdminFeedbackRouteImport } from './routes/{-$locale}/admin/feedback'
 import { Route as Char123LocaleChar125authVerifyEmailRouteImport } from './routes/{-$locale}/(auth)/verify-email'
 import { Route as Char123LocaleChar125authResetPasswordRouteImport } from './routes/{-$locale}/(auth)/reset-password'
@@ -89,12 +86,6 @@ const Char123LocaleChar125TermsRoute =
     path: '/terms',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
-const Char123LocaleChar125SponsorRoute =
-  Char123LocaleChar125SponsorRouteImport.update({
-    id: '/sponsor',
-    path: '/sponsor',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
 const Char123LocaleChar125PrivacyRoute =
   Char123LocaleChar125PrivacyRouteImport.update({
     id: '/privacy',
@@ -131,11 +122,6 @@ const ApiSearchRoute = ApiSearchRouteImport.update({
 const AdminWaitlistDotcsvRoute = AdminWaitlistDotcsvRouteImport.update({
   id: '/admin/waitlist.csv',
   path: '/admin/waitlist.csv',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSponsorsDotcsvRoute = AdminSponsorsDotcsvRouteImport.update({
-  id: '/admin/sponsors.csv',
-  path: '/admin/sponsors.csv',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Char123LocaleChar125AdminRouteRoute =
@@ -184,12 +170,6 @@ const Char123LocaleChar125AdminUsersRoute =
   Char123LocaleChar125AdminUsersRouteImport.update({
     id: '/users',
     path: '/users',
-    getParentRoute: () => Char123LocaleChar125AdminRouteRoute,
-  } as any)
-const Char123LocaleChar125AdminSponsorsRoute =
-  Char123LocaleChar125AdminSponsorsRouteImport.update({
-    id: '/sponsors',
-    path: '/sponsors',
     getParentRoute: () => Char123LocaleChar125AdminRouteRoute,
   } as any)
 const Char123LocaleChar125AdminFeedbackRoute =
@@ -251,7 +231,6 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}/admin': typeof Char123LocaleChar125AdminRouteRouteWithChildren
-  '/admin/sponsors.csv': typeof AdminSponsorsDotcsvRoute
   '/admin/waitlist.csv': typeof AdminWaitlistDotcsvRoute
   '/api/search': typeof ApiSearchRoute
   '/docs-md/$': typeof DocsMdSplatRoute
@@ -259,7 +238,6 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/changelog': typeof Char123LocaleChar125ChangelogRoute
   '/{-$locale}/pricing': typeof Char123LocaleChar125PricingRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
-  '/{-$locale}/sponsor': typeof Char123LocaleChar125SponsorRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125TermsRoute
   '/{-$locale}/waitlist': typeof Char123LocaleChar125WaitlistRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
@@ -272,7 +250,6 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/reset-password': typeof Char123LocaleChar125authResetPasswordRoute
   '/{-$locale}/verify-email': typeof Char123LocaleChar125authVerifyEmailRoute
   '/{-$locale}/admin/feedback': typeof Char123LocaleChar125AdminFeedbackRoute
-  '/{-$locale}/admin/sponsors': typeof Char123LocaleChar125AdminSponsorsRoute
   '/{-$locale}/admin/users': typeof Char123LocaleChar125AdminUsersRoute
   '/{-$locale}/admin/waitlist': typeof Char123LocaleChar125AdminWaitlistRoute
   '/{-$locale}/app/account': typeof Char123LocaleChar125AppAccountRoute
@@ -286,7 +263,6 @@ export interface FileRoutesByTo {
   '/llms.txt': typeof LlmsDottxtRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/admin/sponsors.csv': typeof AdminSponsorsDotcsvRoute
   '/admin/waitlist.csv': typeof AdminWaitlistDotcsvRoute
   '/api/search': typeof ApiSearchRoute
   '/docs-md/$': typeof DocsMdSplatRoute
@@ -294,7 +270,6 @@ export interface FileRoutesByTo {
   '/{-$locale}/changelog': typeof Char123LocaleChar125ChangelogRoute
   '/{-$locale}/pricing': typeof Char123LocaleChar125PricingRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
-  '/{-$locale}/sponsor': typeof Char123LocaleChar125SponsorRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125TermsRoute
   '/{-$locale}/waitlist': typeof Char123LocaleChar125WaitlistRoute
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
@@ -307,7 +282,6 @@ export interface FileRoutesByTo {
   '/{-$locale}/reset-password': typeof Char123LocaleChar125authResetPasswordRoute
   '/{-$locale}/verify-email': typeof Char123LocaleChar125authVerifyEmailRoute
   '/{-$locale}/admin/feedback': typeof Char123LocaleChar125AdminFeedbackRoute
-  '/{-$locale}/admin/sponsors': typeof Char123LocaleChar125AdminSponsorsRoute
   '/{-$locale}/admin/users': typeof Char123LocaleChar125AdminUsersRoute
   '/{-$locale}/admin/waitlist': typeof Char123LocaleChar125AdminWaitlistRoute
   '/{-$locale}/app/account': typeof Char123LocaleChar125AppAccountRoute
@@ -324,7 +298,6 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}/admin': typeof Char123LocaleChar125AdminRouteRouteWithChildren
-  '/admin/sponsors.csv': typeof AdminSponsorsDotcsvRoute
   '/admin/waitlist.csv': typeof AdminWaitlistDotcsvRoute
   '/api/search': typeof ApiSearchRoute
   '/docs-md/$': typeof DocsMdSplatRoute
@@ -332,7 +305,6 @@ export interface FileRoutesById {
   '/{-$locale}/changelog': typeof Char123LocaleChar125ChangelogRoute
   '/{-$locale}/pricing': typeof Char123LocaleChar125PricingRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
-  '/{-$locale}/sponsor': typeof Char123LocaleChar125SponsorRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125TermsRoute
   '/{-$locale}/waitlist': typeof Char123LocaleChar125WaitlistRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
@@ -345,7 +317,6 @@ export interface FileRoutesById {
   '/{-$locale}/(auth)/reset-password': typeof Char123LocaleChar125authResetPasswordRoute
   '/{-$locale}/(auth)/verify-email': typeof Char123LocaleChar125authVerifyEmailRoute
   '/{-$locale}/admin/feedback': typeof Char123LocaleChar125AdminFeedbackRoute
-  '/{-$locale}/admin/sponsors': typeof Char123LocaleChar125AdminSponsorsRoute
   '/{-$locale}/admin/users': typeof Char123LocaleChar125AdminUsersRoute
   '/{-$locale}/admin/waitlist': typeof Char123LocaleChar125AdminWaitlistRoute
   '/{-$locale}/app/account': typeof Char123LocaleChar125AppAccountRoute
@@ -363,7 +334,6 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/{-$locale}/admin'
-    | '/admin/sponsors.csv'
     | '/admin/waitlist.csv'
     | '/api/search'
     | '/docs-md/$'
@@ -371,7 +341,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/changelog'
     | '/{-$locale}/pricing'
     | '/{-$locale}/privacy'
-    | '/{-$locale}/sponsor'
     | '/{-$locale}/terms'
     | '/{-$locale}/waitlist'
     | '/{-$locale}/'
@@ -384,7 +353,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/reset-password'
     | '/{-$locale}/verify-email'
     | '/{-$locale}/admin/feedback'
-    | '/{-$locale}/admin/sponsors'
     | '/{-$locale}/admin/users'
     | '/{-$locale}/admin/waitlist'
     | '/{-$locale}/app/account'
@@ -398,7 +366,6 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/robots.txt'
     | '/sitemap.xml'
-    | '/admin/sponsors.csv'
     | '/admin/waitlist.csv'
     | '/api/search'
     | '/docs-md/$'
@@ -406,7 +373,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/changelog'
     | '/{-$locale}/pricing'
     | '/{-$locale}/privacy'
-    | '/{-$locale}/sponsor'
     | '/{-$locale}/terms'
     | '/{-$locale}/waitlist'
     | '/{-$locale}'
@@ -419,7 +385,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/reset-password'
     | '/{-$locale}/verify-email'
     | '/{-$locale}/admin/feedback'
-    | '/{-$locale}/admin/sponsors'
     | '/{-$locale}/admin/users'
     | '/{-$locale}/admin/waitlist'
     | '/{-$locale}/app/account'
@@ -435,7 +400,6 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/{-$locale}/admin'
-    | '/admin/sponsors.csv'
     | '/admin/waitlist.csv'
     | '/api/search'
     | '/docs-md/$'
@@ -443,7 +407,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/changelog'
     | '/{-$locale}/pricing'
     | '/{-$locale}/privacy'
-    | '/{-$locale}/sponsor'
     | '/{-$locale}/terms'
     | '/{-$locale}/waitlist'
     | '/{-$locale}/'
@@ -456,7 +419,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/(auth)/reset-password'
     | '/{-$locale}/(auth)/verify-email'
     | '/{-$locale}/admin/feedback'
-    | '/{-$locale}/admin/sponsors'
     | '/{-$locale}/admin/users'
     | '/{-$locale}/admin/waitlist'
     | '/{-$locale}/app/account'
@@ -472,7 +434,6 @@ export interface RootRouteChildren {
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  AdminSponsorsDotcsvRoute: typeof AdminSponsorsDotcsvRoute
   AdminWaitlistDotcsvRoute: typeof AdminWaitlistDotcsvRoute
   ApiSearchRoute: typeof ApiSearchRoute
   DocsMdSplatRoute: typeof DocsMdSplatRoute
@@ -540,13 +501,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125TermsRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/{-$locale}/sponsor': {
-      id: '/{-$locale}/sponsor'
-      path: '/sponsor'
-      fullPath: '/{-$locale}/sponsor'
-      preLoaderRoute: typeof Char123LocaleChar125SponsorRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
-    }
     '/{-$locale}/privacy': {
       id: '/{-$locale}/privacy'
       path: '/privacy'
@@ -594,13 +548,6 @@ declare module '@tanstack/react-router' {
       path: '/admin/waitlist.csv'
       fullPath: '/admin/waitlist.csv'
       preLoaderRoute: typeof AdminWaitlistDotcsvRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/sponsors.csv': {
-      id: '/admin/sponsors.csv'
-      path: '/admin/sponsors.csv'
-      fullPath: '/admin/sponsors.csv'
-      preLoaderRoute: typeof AdminSponsorsDotcsvRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/{-$locale}/admin': {
@@ -657,13 +604,6 @@ declare module '@tanstack/react-router' {
       path: '/users'
       fullPath: '/{-$locale}/admin/users'
       preLoaderRoute: typeof Char123LocaleChar125AdminUsersRouteImport
-      parentRoute: typeof Char123LocaleChar125AdminRouteRoute
-    }
-    '/{-$locale}/admin/sponsors': {
-      id: '/{-$locale}/admin/sponsors'
-      path: '/sponsors'
-      fullPath: '/{-$locale}/admin/sponsors'
-      preLoaderRoute: typeof Char123LocaleChar125AdminSponsorsRouteImport
       parentRoute: typeof Char123LocaleChar125AdminRouteRoute
     }
     '/{-$locale}/admin/feedback': {
@@ -734,7 +674,6 @@ declare module '@tanstack/react-router' {
 
 interface Char123LocaleChar125AdminRouteRouteChildren {
   Char123LocaleChar125AdminFeedbackRoute: typeof Char123LocaleChar125AdminFeedbackRoute
-  Char123LocaleChar125AdminSponsorsRoute: typeof Char123LocaleChar125AdminSponsorsRoute
   Char123LocaleChar125AdminUsersRoute: typeof Char123LocaleChar125AdminUsersRoute
   Char123LocaleChar125AdminWaitlistRoute: typeof Char123LocaleChar125AdminWaitlistRoute
   Char123LocaleChar125AdminIndexRoute: typeof Char123LocaleChar125AdminIndexRoute
@@ -744,8 +683,6 @@ const Char123LocaleChar125AdminRouteRouteChildren: Char123LocaleChar125AdminRout
   {
     Char123LocaleChar125AdminFeedbackRoute:
       Char123LocaleChar125AdminFeedbackRoute,
-    Char123LocaleChar125AdminSponsorsRoute:
-      Char123LocaleChar125AdminSponsorsRoute,
     Char123LocaleChar125AdminUsersRoute: Char123LocaleChar125AdminUsersRoute,
     Char123LocaleChar125AdminWaitlistRoute:
       Char123LocaleChar125AdminWaitlistRoute,
@@ -762,7 +699,6 @@ interface Char123LocaleChar125RouteRouteChildren {
   Char123LocaleChar125ChangelogRoute: typeof Char123LocaleChar125ChangelogRoute
   Char123LocaleChar125PricingRoute: typeof Char123LocaleChar125PricingRoute
   Char123LocaleChar125PrivacyRoute: typeof Char123LocaleChar125PrivacyRoute
-  Char123LocaleChar125SponsorRoute: typeof Char123LocaleChar125SponsorRoute
   Char123LocaleChar125TermsRoute: typeof Char123LocaleChar125TermsRoute
   Char123LocaleChar125WaitlistRoute: typeof Char123LocaleChar125WaitlistRoute
   Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
@@ -784,7 +720,6 @@ const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChil
     Char123LocaleChar125ChangelogRoute: Char123LocaleChar125ChangelogRoute,
     Char123LocaleChar125PricingRoute: Char123LocaleChar125PricingRoute,
     Char123LocaleChar125PrivacyRoute: Char123LocaleChar125PrivacyRoute,
-    Char123LocaleChar125SponsorRoute: Char123LocaleChar125SponsorRoute,
     Char123LocaleChar125TermsRoute: Char123LocaleChar125TermsRoute,
     Char123LocaleChar125WaitlistRoute: Char123LocaleChar125WaitlistRoute,
     Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
@@ -814,7 +749,6 @@ const rootRouteChildren: RootRouteChildren = {
   LlmsDottxtRoute: LlmsDottxtRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  AdminSponsorsDotcsvRoute: AdminSponsorsDotcsvRoute,
   AdminWaitlistDotcsvRoute: AdminWaitlistDotcsvRoute,
   ApiSearchRoute: ApiSearchRoute,
   DocsMdSplatRoute: DocsMdSplatRoute,

@@ -106,10 +106,6 @@ export function AppShell({
               <ClipboardList size={18} className="shrink-0" />
               {label(t('admin.waitlist'))}
             </Link>
-            <Link to="/{-$locale}/admin/sponsors" activeProps={{}} className={item(active === 'admin-sponsors')} title={t('admin.sponsors')}>
-              <Heart size={18} className="shrink-0" />
-              {label(t('admin.sponsors'))}
-            </Link>
             <Link to="/{-$locale}/admin/feedback" activeProps={{}} className={item(active === 'admin-feedback')} title={t('admin.feedbackAdmin')}>
               <MessageSquare size={18} className="shrink-0" />
               {label(t('admin.feedbackAdmin'))}
@@ -164,7 +160,7 @@ export function AppShell({
           </button>
           <span className="app-crumb">
             <span className="hidden md:inline">
-              FlareStarter <span className="mx-1.5 text-fg-3">/</span>
+              Rubricly <span className="mx-1.5 text-fg-3">/</span>
             </span>
             <b>{crumb}</b>
           </span>

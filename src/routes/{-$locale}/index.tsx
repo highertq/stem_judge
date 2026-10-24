@@ -22,11 +22,11 @@ export const Route = createFileRoute('/{-$locale}/')({
       origin,
       locale,
       path: '/',
-      title: 'FlareStarter',
+      title: 'Rubricly',
       description:
         locale === 'zh'
-          ? 'FlareStarter——Cloudflare 原生的 SaaS 起步模板。克隆即用，部署到 Workers。'
-          : 'FlareStarter — the Cloudflare-native SaaS starter. Clone it and ship on Workers.',
+          ? 'Rubricly —— 给项目式 STEM 作品做评价：每条评分都有证据，报告家长读得懂。'
+          : 'Rubricly — AI assessment for project-based STEM work. Every rating cites the evidence; every report reads like a teacher wrote it.',
     })
     return { meta, links }
   },

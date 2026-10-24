@@ -1,4 +1,4 @@
-/** FlareStarter wordmark — 4-point spark mark + "Flare" (bold) + "Starter" (58%). `compact` renders the mark only. */
+/** Rubricly wordmark — square tick mark + "Rubric" (bold) + "ly" (58%). `compact` renders the mark only. */
 export function Logo({ size = 18, compact = false }: { size?: number; compact?: boolean }) {
   return (
     <span
@@ -14,13 +14,13 @@ export function Logo({ size = 18, compact = false }: { size?: number; compact?: 
           color: 'var(--primary-foreground)',
         }}
       >
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12 1.5 14.2 9.8 22.5 12 14.2 14.2 12 22.5 9.8 14.2 1.5 12 9.8 9.8Z" />
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="4" y="4" width="16" height="16" rx="3.5" />
         </svg>
       </span>
       {!compact && (
         <span>
-          Flare<span className="font-medium opacity-[0.58]">Starter</span>
+          Rubric<span className="font-medium opacity-[0.58]">ly</span>
         </span>
       )}
     </span>

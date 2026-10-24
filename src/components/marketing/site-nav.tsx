@@ -7,7 +7,7 @@ import { ThemeToggle } from '@/features/theme/theme-toggle'
 import { LangSwitch } from '@/features/i18n/lang-switch'
 import { useTranslation } from '@/features/i18n/provider'
 
-const GITHUB_URL = 'https://github.com/flarestarter/flarestarter'
+const GITHUB_URL = 'https://github.com/highertq/stem_judge'
 
 /** Sticky marketing header. Links + CTA collapse into a hamburger menu on mobile. */
 export function SiteNav({ theme, loggedIn }: { theme: 'light' | 'dark'; loggedIn: boolean }) {
@@ -22,15 +22,6 @@ export function SiteNav({ theme, loggedIn }: { theme: 'light' | 'dark'; loggedIn
       <Link to="/{-$locale}/pricing" className="rounded-md px-2 py-3 text-sm font-medium text-fg-2 transition-colors hover:bg-bg-alt hover:text-foreground md:py-2">
         {t('marketing.navPricing')}
       </Link>
-      <Link to="/{-$locale}/changelog" className="rounded-md px-2 py-3 text-sm font-medium text-fg-2 transition-colors hover:bg-bg-alt hover:text-foreground md:py-2">
-        {t('marketing.navChangelog')}
-      </Link>
-      <Link to="/{-$locale}/sponsor" className="rounded-md px-2 py-3 text-sm font-medium text-fg-2 transition-colors hover:bg-bg-alt hover:text-foreground md:py-2">
-        {t('sponsor.navSponsor')}
-      </Link>
-      <a href="/docs" className="rounded-md px-2 py-3 text-sm font-medium text-fg-2 transition-colors hover:bg-bg-alt hover:text-foreground md:py-2">
-        {t('marketing.navDocs')}
-      </a>
     </>
   )
 
@@ -50,7 +41,7 @@ export function SiteNav({ theme, loggedIn }: { theme: 'light' | 'dark'; loggedIn
       style={{ background: 'color-mix(in srgb, var(--background) 82%, transparent)' }}
     >
       <nav className="flex h-16 items-center gap-3 px-4 md:px-7">
-        <Link to="/{-$locale}" aria-label="FlareStarter" className="shrink-0">
+        <Link to="/{-$locale}" aria-label="Rubricly" className="shrink-0">
           <Logo />
         </Link>
         <div className="flex-1" />

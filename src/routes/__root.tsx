@@ -12,9 +12,9 @@ export const Route = createRootRoute({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'FlareStarter — Cloudflare-native SaaS starter' },
+      { title: 'Rubricly — Cloudflare-native SaaS starter' },
       { name: 'description', content: 'The open-source, Cloudflare-native SaaS starter. Clone it and ship on Workers.' },
-      { property: 'og:title', content: 'FlareStarter' },
+      { property: 'og:title', content: 'Rubricly' },
       { property: 'og:description', content: 'The open-source, Cloudflare-native SaaS starter. Clone it and ship on Workers.' },
       { property: 'og:type', content: 'website' },
     ],
